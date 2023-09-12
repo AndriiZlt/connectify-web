@@ -1,0 +1,56 @@
+.publicRoom {
+  /* height: 100px; */
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+  padding-top: 25px;
+}
+
+.roomHeader {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+/* .usersList {
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+  box-sizing: border-box;
+} */
+
+.friendCard {
+  width: 120px;
+  height: 120px;
+  font-family: "Roboto";
+  border-radius: 60px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.friendAvatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.friendName {
+  width: 100%;
+  height: 16px;
+
+  margin: 0;
+  color: rgb(243, 240, 240);
+  text-align: center;
+  font-size: 15px;
+  line-height: 20px;
+}

@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase-config";
 
 function App() {
+  const [authUser, setAuthUser] = useState(null);
+  useEffect(() => {
+    const listen = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthUser(user);
+        console.log("user=>", user);
+      } else {
+        setAuthUser(null);
+        console.log("No user");
+      }
+    });
+    return () => {
+      listen();
+    };
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      {authUser ? (
+        <Route exact path="/" restricted element={<Home />} />
+      ) : (
+        <Route exact path="/" restricted element={<Login />} />
+      )}
+    </Routes>
   );
 }
 
